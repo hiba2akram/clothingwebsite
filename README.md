@@ -25,9 +25,6 @@ The backend is connected to database services to handle user authentication and 
 - HTML, CSS, JavaScript
 - Database System (MySQL )
 
-## 👩‍💻 Developer
-- Hiba Akram
-
 ## 📌 Repository
 Hosted on GitHub platform.
 
