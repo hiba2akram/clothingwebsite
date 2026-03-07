@@ -1,10 +1,39 @@
 .navbar{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: transparent;
-    color: black;
-    color: white;
-    height: 60px;
+    display:flex;
+    align-items:center;
+    background:black;
+    color:white;
+    padding:10px 20px;
+    position:relative;
+}
+
+.burger{
+    position:absolute;
+    left:20px;
+    cursor:pointer;
+}
+
+.logo{
+    margin:auto;
+}
+
+.sidebar{
+    position:fixed;
+    top:0;
+    left:-260px;
+    width:250px;
+    height:100%;
+    background:white;
+    transition:0.3s;
+    z-index:9999;
+    padding:20px;
+}
+
+.sidebar.show{
+    left:0;
+}
+
+.close-btn{
+    cursor:pointer;
+    margin-bottom:20px;
 }

@@ -1,0 +1,14 @@
+.carousel{
+    position: relative;
+    z-index: 1;
+}
+
+.carousel-item{
+    height: 600px;
+}
+
+.carousel-media{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
