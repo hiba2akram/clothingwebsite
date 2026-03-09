@@ -1,39 +1,87 @@
-.navbar{
-    display:flex;
-    align-items:center;
-    background:black;
-    color:white;
-    padding:10px 20px;
-    position:relative;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap');
+
+.navbar-main{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 40px;
+z-index:3000;
+/* background:rgba(0,0,0,0.5); */
 }
+
+.brand{
+ font-family: 'Arvo', serif;
+    font-size: 48px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: black;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.3s;
+
+}
+
 
 .burger{
-    position:absolute;
-    left:20px;
-    cursor:pointer;
+font-size:30px;
+color:white;
+cursor:pointer;
+text-shadow:2px 2px 8px rgba(0,0,0,0.7);
+
 }
 
-.logo{
-    margin:auto;
+.icon{
+font-size:24px;
+color:white;
+text-shadow:2px 2px 8px rgba(0,0,0,0.7);
+
+margin-left:20px;
+cursor:pointer;
 }
+
+/* Sidebar */
 
 .sidebar{
-    position:fixed;
-    top:0;
-    left:-260px;
-    width:250px;
-    height:100%;
-    background:white;
-    transition:0.3s;
-    z-index:9999;
-    padding:20px;
+    color:black;
+position:fixed;
+top:0;
+left:-260px;
+width:260px;
+height:100%;
+background-color:white;
+transition:0.4s;
+z-index:4000;
+padding:30px;
 }
 
 .sidebar.show{
-    left:0;
+left:0;
+}
+
+.sidebar ul{
+list-style:none;
+padding:0;
+}
+
+.sidebar ul li{
+margin:20px 0;
+}
+
+.sidebar ul li a{
+color:white;
+text-decoration:none;
+font-size:18px;
 }
 
 .close-btn{
-    cursor:pointer;
-    margin-bottom:20px;
+background:none;
+border:none;
+color:white;
+font-size:22px;
+cursor:pointer;
+margin-bottom:20px;
 }

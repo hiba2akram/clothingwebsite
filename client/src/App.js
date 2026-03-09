@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import CarouselComponent from "./Carousel/Carousel";
 
+import Footer from "./Footer/footer";
+
 function App() {
 
   const [products, setProducts] = useState([]); // ✅ plural name
@@ -15,8 +17,10 @@ function App() {
   return (
     <div >
       <Navbar />
-     
+
      <CarouselComponent/>
+
+     <Footer/>
      
      
     </div>
