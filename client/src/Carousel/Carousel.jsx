@@ -29,7 +29,7 @@ data-bs-ride="carousel">
 </div>
 
 <div className="carousel-item">
-<img src={banner3} className="d-block w-100 carousel-img" alt="banner"/>
+<img src={banner3} className="d-block w-100 carousel-img" alt="banner"  />
 </div>
 
 </div>

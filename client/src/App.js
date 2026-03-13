@@ -1,12 +1,19 @@
-import { useEffect, useState } from "react";
+
+
+import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 import Navbar from "./components/Navbar";
 import CarouselComponent from "./Carousel/Carousel";
-
+import BrandSection from "./Brandsection/Brandsection";
+import Brandvideo from "./BrandVideo/Brandvideo";
+import OnePiece from "./unstitched/onepiece";
+import ProductDetail1 from "./Productdetails/ProductDetail1";
 import Footer from "./Footer/footer";
 
 function App() {
 
-  const [products, setProducts] = useState([]); // ✅ plural name
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
     fetch("http://localhost:5000/product")
@@ -15,16 +22,30 @@ function App() {
   }, []);
 
   return (
-    <div >
+    <Router>
+
       <Navbar />
 
-     <CarouselComponent/>
+      <Routes>
 
-     <Footer/>
-     
-     
-    </div>
-    
+        <Route
+          path="/"
+          element={
+            <>
+              <CarouselComponent />
+              <BrandSection />
+              <Brandvideo />
+            </>
+          }
+        />
+
+        <Route path="/onepiece" element={<OnePiece />} />
+          <Route path="/product/:id" element={<ProductDetail1 />} />
+
+
+      </Routes>
+        {/* <Footer /> */}
+    </Router>
   );
 }
 

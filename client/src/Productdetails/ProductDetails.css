@@ -1,0 +1,44 @@
+/* Product main image */
+.product-main-image {
+  max-width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Image navigation buttons below image */
+.image-nav-buttons button {
+  background-color: #212529;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.image-nav-buttons button:hover {
+  background-color: #000;
+}
+
+/* Quantity selector */
+.quantity-selector button {
+  background-color: #212529;
+  color: #fff;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.quantity-selector button:hover {
+  background-color: #000;
+}
+
+.quantity-display {
+  min-width: 30px;
+  text-align: center;
+  font-size: 1.2rem;
+}

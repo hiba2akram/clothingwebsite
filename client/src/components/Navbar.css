@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
 .navbar-main{
 position:fixed;
 top:0;
@@ -14,9 +13,10 @@ z-index:3000;
 }
 
 .brand{
- font-family: 'Arvo', serif;
-    font-size: 48px;
-    font-weight: 800;
+    font-family: 'Cinzel', serif;
+
+    font-size: 60px;
+    font-weight: 1000;
     letter-spacing: 2px;
     color: black;
     text-transform: uppercase;
@@ -30,7 +30,7 @@ z-index:3000;
 font-size:30px;
 color:white;
 cursor:pointer;
-text-shadow:2px 2px 8px rgba(0,0,0,0.7);
+/* text-shadow:2px 2px 8px rgba(0,0,0,0.7); */
 
 }
 
@@ -50,7 +50,7 @@ cursor:pointer;
 position:fixed;
 top:0;
 left:-260px;
-width:260px;
+width:460px;
 height:100%;
 background-color:white;
 transition:0.4s;
@@ -84,4 +84,20 @@ color:white;
 font-size:22px;
 cursor:pointer;
 margin-bottom:20px;
+}
+
+.submenu{
+max-height:0;
+overflow:hidden;
+display:flex;
+flex-direction:column;
+padding-left:15px;
+transition:0.3s;
+}
+
+.submenu.open{
+max-height:150px;
+}
+.menu-title{
+    cursor: pointer;
 }
