@@ -1,0 +1,256 @@
+/* .product-card {
+  border: none;
+  transition: 0.3s ease;
+  position: relative;
+}
+
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.img-container {
+  position: relative;
+  overflow: hidden;
+}
+.heading {
+
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+}
+.product-img {
+  width: 100%;
+  transition: 0.4s ease;
+}
+ .product-img {
+  width: 100%;
+  transition: 0.4s ease;
+  position: relative;
+  z-index: 1; 
+}
+
+.hover-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.img-container:hover .hover-img {
+  opacity: 1;
+}
+
+.img-container:hover .main-img {
+  opacity: 0;
+}
+
+.sale-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.wishlist {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.price {
+  margin-top: 10px;
+}
+
+.old-price {
+  text-decoration: line-through;
+  color: gray;
+  margin-left: 10px;
+}
+
+.new-price {
+  font-weight: bold;
+}
+
+.rating {
+  color: gold;
+}
+
+.category-circle-row {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+  justify-content: center; 
+  flex-wrap: wrap;
+
+  margin: 20px 0 40px 0;
+}
+
+.category-circle {
+  border: 2px solid black;
+  width: 145px;
+  height: 155px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid #eee;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.category-circle:hover {
+  transform: scale(1.12);
+  border-color: black;
+}
+
+.category-circle img {
+  width: 100%;
+  height: 130%;
+  object-fit: cover;
+} */
+
+/* =========================
+   PRODUCT CARD WRAPPER
+========================= */
+
+.product-card {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+/* =========================
+   IMAGE CONTAINER
+========================= */
+
+.img-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* =========================
+   IMAGES
+========================= */
+
+.product-img {
+  width: 100%;
+  display: block;
+  transition: all 0.4s ease;
+}
+
+/* main image */
+.main-img {
+  position: relative;
+  z-index: 1;
+}
+
+/* hover image */
+.hover-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  opacity: 0;
+  z-index: 2;
+  transition: opacity 0.3s ease;
+}
+
+.heading {
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+/* hover effect */
+.img-container:hover .hover-img {
+  opacity: 1;
+}
+
+/* =========================
+   ICONS (CART / PROFILE / WISHLIST)
+========================= */
+
+.wishlist,
+.cart-icon,
+.profile-icon {
+  position: absolute;
+  z-index: 9999;   /* 🔥 ALWAYS ON TOP */
+  cursor: pointer;
+
+  background: white;
+  border-radius: 50%;
+  padding: 6px;
+  font-size: 18px;
+}
+
+/* wishlist position */
+.wishlist {
+  top: 10px;
+  right: 10px;
+}
+
+/* cart icon position (if inside card) */
+.cart-icon {
+  top: 10px;
+  left: 10px;
+}
+
+/* profile icon position */
+.profile-icon {
+  top: 10px;
+  left: 50px;
+}
+
+/* =========================
+   SALE BADGE
+========================= */
+
+.badge1 {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 9999;
+}
+
+/* =========================
+   CARD BODY
+========================= */
+
+.card-body {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+}
+
+/* =========================
+   PRICE STYLE
+========================= */
+
+.price {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.old-price {
+  text-decoration: line-through;
+  color: gray;
+}
+
+/* =========================
+   HOVER EFFECT
+========================= */
+
+.product-card:hover .main-img {
+  transform: scale(1.05);
+}

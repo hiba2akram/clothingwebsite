@@ -1,0 +1,49 @@
+/* AdminLogin.css */
+
+/* Make the whole page a flex container, center content */
+.admin-login-container {
+  display: flex;
+  justify-content: center; /* horizontal center */
+  align-items: center;     /* vertical center */
+  height: 100vh;           /* full viewport height */
+  background-color: #f0f0f0; /* optional background */
+}
+
+/* Form box styling */
+.admin-login-form {
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  width: 300px;            /* fixed width */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Input fields */
+.admin-login-form input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Login button */
+.admin-login-form button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 15px;
+  font-size: 16px;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.admin-login-form button:hover {
+  background-color: #555;
+}

@@ -1,55 +1,142 @@
-import React, { useState } from "react";
-import './Brandsection.css';
-import card1 from "../assets/images/card1.jpg";
-import card2 from "../assets/images/card2.jpg";
-import card3 from "../assets/images/card3.jpg";
+// import React, { useEffect, useRef, useState } from "react";
+// import "./Brandsection.css";
+// import { useNavigate } from "react-router-dom";
 
+// import womenImg from "../assets/images/img2hover.JPG";
+// import menImg from "../assets/images/card2.webp";
+// import kidsImg from "../assets/images/kids.webp";
+// import accessoriesImg from "../assets/images/jewelleys.webp";
+// import footwearImg from "../assets/images/footwear1.webp";
 
+// function Brandsection() {
+//   const navigate = useNavigate();
 
+//   const categories = [
+//     { name: "Women", img: womenImg, path: "/fabrics" },
+//     { name: "Men", img: menImg, path: "/men" },
+//     { name: "Kids", img: kidsImg, path: "/kids" },
+//     { name: "Accessories", img: accessoriesImg, path: "/accessories" },
+//     { name: "Footwear", img: footwearImg, path: "/footwear" },
+//   ];
+
+//   return (
+//     <div className="brand-section">
+
+//       <div className="brand-left">
+//         <h2 className="brand-title">Discover Your Style with Fitzo</h2>
+//         <p className="brand-description">
+//           Explore our latest collection of trendy and comfortable clothing.
+//         </p>
+//       </div>
+
+//       <div className="category-section">
+//         {categories.map((cat, index) => (
+//           <div key={index} className="category-card">
+
+//             <div className="category-img">
+//               <img src={cat.img} alt={cat.name} />
+//             </div>
+
+//             <h3 className="category-name">{cat.name}</h3>
+
+//             <p className="category-desc">
+//               Explore {cat.name} collection
+//             </p>
+
+//             <button
+//               className="category-btn"
+//               onClick={() => navigate(cat.path)}
+//             >
+//               Shop Now
+//             </button>
+
+//           </div>
+//         ))}
+//       </div>
+
+//     </div>
+//   );
+// }
+
+// export default Brandsection;
+
+import React, { useEffect, useRef, useState } from "react";
+import "./Brandsection.css";
+import { useNavigate } from "react-router-dom";
+
+import womenImg from "../assets/images/img2hover.JPG";
+import menImg from "../assets/images/card2.webp";
+import kidsImg from "../assets/images/kids.webp";
+import accessoriesImg from "../assets/images/jewelleys.webp";
+import footwearImg from "../assets/images/footwear1.webp";
 
 function Brandsection() {
- const [open, setOpen] = useState(false);
- 
-return (
-<>
-<div className="brand-section">
-<div className="brand-left">
-<h2 className="brand-title">Discover Your Style with Fitzo</h2>
-<p className="brand-description">Explore our latest collection of trendy and comfortable clothing. From casual wear to activewear, we have everything you need to express your unique style.</p>
-{/* <button className="shop-now-btn" onClick={()=>setOpen(true)}>Shop Now</button> */}
-</div>
+  const navigate = useNavigate();
 
-<div className="brand-cards">
+  const sectionRef = useRef();
+  const [isVisible, setIsVisible] = useState(false);
 
-  <div className="card">
-    <img src={card1} className="card-img-top" alt="card1"/>
-    <div className="card-body">
-      <h5 className="card-title">Ready To Wear</h5>
-      <p className="card-text">Description here</p>
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    if (sectionRef.current) observer.observe(sectionRef.current);
+
+    return () => {
+      if (sectionRef.current) observer.unobserve(sectionRef.current);
+    };
+  }, []);
+
+  const categories = [
+    { name: "Women", img: womenImg, path: "/fabrics" },
+    { name: "Men", img: menImg, path: "/men" },
+    { name: "Kids", img: kidsImg, path: "/kids" },
+    { name: "Accessories", img: accessoriesImg, path: "/accessories" },
+    { name: "Footwear", img: footwearImg, path: "/footwear" },
+  ];
+
+  return (
+    <div
+      ref={sectionRef}
+      className={`brand-section ${isVisible ? "show" : ""}`}
+    >
+      <div className="brand-left">
+        <h2 className="brand-title">Discover Your Style with Fitzo</h2>
+        <p className="brand-description">
+          Explore our latest collection of trendy and comfortable clothing.
+        </p>
+      </div>
+
+      <div className="category-section">
+        {categories.map((cat, index) => (
+          <div key={index} className="category-card">
+            <div className="category-img">
+              <img src={cat.img} alt={cat.name} />
+            </div>
+
+            <h3 className="category-name">{cat.name}</h3>
+
+            <p className="category-desc">
+              Explore {cat.name} collection
+            </p>
+
+            <button
+              className="category-btn"
+              onClick={() => navigate(cat.path)}
+            >
+              Shop Now
+            </button>
+          </div>
+        ))}
+      </div>
     </div>
-  </div>
-
-  <div className="card">
-    <img src={card2} className="card-img-top" alt="card2" style={{height : "507px"}}/>
-    <div className="card-body">
-      <h5 className="card-title">Unstitched</h5>
-      <p className="card-text">Description here</p>
-    </div>
-  </div>
-
-  <div className="card">
-    <img src={card3} className="card-img-top" alt="card3" style={{height : "507px"}}/>
-    <div className="card-body">
-      <h5 className="card-title">Western Wear</h5>
-      <p className="card-text">Description here</p>
-    </div>
-  </div>
-
-</div>
-</div>
-
-</>
-);
+  );
 }
 
 export default Brandsection;

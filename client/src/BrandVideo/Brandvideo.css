@@ -1,13 +1,52 @@
 .brandvideo {
+  display: flex;           /* video + content side by side */
+  align-items: center;     /* vertically center content */
   width: 100%;
-  height: 600px; /* fixed height or use vh */
-  overflow: hidden;
-  position: relative;
-  margin-right: 0px;
+  height: 500px;           /* total height */
+  gap: 20px;               /* space between video and content */
+  padding: 20px;
+  box-sizing: border-box;
 }
 
-.brandvideo video {
-  width: 100%;
+.video-wrapper {
+  width: 60%;              /* video takes 60% of container */
   height: 100%;
-  object-fit: cover; /* cover whole div */
+}
+
+.video {
+  width: 100%;
+  height: 120%;
+  object-fit: cover;       /* keeps aspect ratio, no stretching */
+  border-radius: 10px;
+  margin-top: 40px;
+}
+
+.right-content {
+  width: 35%;              /* right content takes remaining space */
+  color: black;
+}
+
+.right-content h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.right-content p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.right-content button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: black;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  transition: all 0.3s ease;
+}
+.right-content button:hover {
+  background-color: pink;
+  color: black;
 }

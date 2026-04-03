@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+
+
+.featured-section {
+  padding: 60px 40px;
+  text-align: center;
+}
+
+.featured-title {
+      font-family: 'Cinzel', serif;
+  font-size: 48px;
+    margin-top: 80px;
+    margin-left: 100px;
+  font-size: 32px;
+  margin-bottom: 40px;
+}
+
+.featured-container {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+.featured-card {
+  width: 250px;
+  background: white;
+  border-radius: 15px;
+  padding: 15px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+  transition: 0.3s;
+}
+
+.featured-card:hover {
+  transform: translateY(-10px);
+}
+
+.featured-card img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.featured-card h4 {
+  margin: 10px 0;
+}
+
+.price {
+  color: #333;
+  font-weight: bold;
+}
+
+.featured-card button {
+  width: 100%;
+  padding: 8px;
+  border: none;
+  background: black;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.featured-card button:hover {
+  background: #ff4500;
+}

@@ -1,0 +1,176 @@
+/* PAGE CONTAINER */
+.container {
+  max-width: 1200px;
+  margin-top: 80px; /* proper spacing from navbar */
+}
+
+/* ROW ALIGNMENT */
+.row {
+  align-items: center;
+}
+
+/* PRODUCT IMAGE */
+.product-main-image {
+    margin-top: 100px;
+  width: 100%;
+  max-height: 850px;
+  object-fit: cover;
+  border-radius: 12px;
+  transition: transform 0.4s ease;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.product-main-image:hover {
+  transform: scale(1.05);
+}
+
+/* IMAGE NAV BUTTONS */
+.img-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  border: none;
+  font-size: 20px;
+  padding: 10px 14px;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: 0.3s;
+  z-index: 10;
+}
+
+.img-nav:hover {
+  background: black;
+}
+
+.img-nav.prev {
+  left: 10px;
+}
+
+.img-nav.next {
+  right: 10px;
+}
+
+/* PRODUCT TITLE */
+h2 {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+/* PRICE */
+.price {
+  color: #111;
+  font-weight: bold;
+  font-size: 22px;
+  margin-bottom: 15px;
+}
+
+/* DESCRIPTION */
+p {
+  color: #555;
+  line-height: 1.6;
+}
+
+/* DETAILS LIST */
+.product-details p {
+  margin: 4px 0;
+  font-size: 14px;
+  color: #444;
+}
+
+/* QUANTITY BOX */
+.quantity-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.qty-btn {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: black;
+  color: white;
+  font-size: 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.qty-btn:hover {
+  background: #333;
+}
+
+.qty-value {
+  font-size: 18px;
+  font-weight: 500;
+  min-width: 30px;
+  text-align: center;
+}
+
+/* ADD TO CART BUTTON */
+.add-cart-btn {
+  width: 100%;
+  background: black;
+  color: white;
+  padding: 12px;
+  border: none;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.add-cart-btn:hover {
+  background: #222;
+  transform: translateY(-2px);
+}
+
+/* BACK BUTTON */
+.btn-secondary {
+  width: 100%;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .product-main-image {
+    max-height: 300px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  .price {
+    font-size: 18px;
+  }
+}
+
+.size-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 99999; /* VERY IMPORTANT */
+}
+
+.size-modal {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  width: 500px;
+  max-width: 90%;
+
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}

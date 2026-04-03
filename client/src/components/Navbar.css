@@ -1,103 +1,177 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
-.navbar-main{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:20px 40px;
-z-index:3000;
-/* background:rgba(0,0,0,0.5); */
+/* NAVBAR */
+.navbar-main { position: fixed;
+   top: 0; left: 0; width: 100%; 
+   display: flex; 
+   justify-content: space-between; /* space between left and right */ 
+   align-items: center; 
+   padding: 20px 40px; 
+   z-index: 3000; }
+
+/* LEFT SIDE */
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
-.brand{
-    font-family: 'Cinzel', serif;
+/* BURGER */
+.burger {
+  font-size: 60px;
+  width: 40px;
+  cursor: pointer;
+  transition: 0.3s;
+}
 
-    font-size: 60px;
-    font-weight: 1000;
-    letter-spacing: 2px;
-    color: black;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: 0.3s;
+.burger:hover {
+  transform: scale(1.1);
+}
 
+/* BRAND */
+.brand {
+  font-family: 'Cinzel', serif;
+  font-size: 60px;
+  font-weight: 1000;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.brand:hover {
+  opacity: 0.7;
+}
+
+/* RIGHT SIDE */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+/* ICON */
+.icon {
+
+  
+  position: relative; /* IMPORTANT for badge */
+  font-size: 30px;
+  margin-left: 15px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.icon svg {
+
+  font-size: 32px;
+  color: black;
+  transition: 0.3s ease;
+}
+
+.icon svg:hover {
+  transform: scale(1.15);
+  color: #ff4500;
+}
+
+.badge {
+  position: absolute; 
+  top: -8px;
+  right: -10px;
+ color: black;
+ background-color: orange;
+  font-size: 11px;
+  width: 8px;
+  height: 28px;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 
-.burger{
-font-size:30px;
-color:white;
-cursor:pointer;
-/* text-shadow:2px 2px 8px rgba(0,0,0,0.7); */
-
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -320px;
+  width: 300px;
+  height: 100vh;
+  background: white;
+  padding: 20px;
+  transition: 0.4s ease;
+  border-radius: 0 20px 20px 0;
+  box-shadow: 5px 0 20px rgba(0,0,0,0.1);
+  z-index: 4000;
 }
 
-.icon{
-font-size:24px;
-color:white;
-text-shadow:2px 2px 8px rgba(0,0,0,0.7);
-
-margin-left:20px;
-cursor:pointer;
+.sidebar.show {
+  left: 0;
 }
 
-/* Sidebar */
-
-.sidebar{
-    color:black;
-position:fixed;
-top:0;
-left:-260px;
-width:460px;
-height:100%;
-background-color:white;
-transition:0.4s;
-z-index:4000;
-padding:30px;
+/* MENU */
+.menu-title {
+  font-size: 18px;
+  font-weight: 500;
+  padding: 12px 0;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-.sidebar.show{
-left:0;
+.menu-title:hover {
+  color: #ff4500;
+  padding-left: 5px;
 }
 
-.sidebar ul{
-list-style:none;
-padding:0;
+/* SECOND SIDEBAR */
+.secondary-sidebar {
+  position: fixed;
+  top: 0;
+  left: 300px;
+  width: 320px;
+  height: 100vh;
+  background: #fafafa;
+  padding: 20px;
+  transition: 0.4s ease;
+  border-radius: 0 20px 20px 0;
+  box-shadow: 5px 0 20px rgba(0,0,0,0.08);
+  z-index: 5000;
 }
 
-.sidebar ul li{
-margin:20px 0;
+/* LINKS */
+.secondary-sidebar ul {
+  list-style: none;
+  padding: 0;
 }
 
-.sidebar ul li a{
-color:white;
-text-decoration:none;
-font-size:18px;
+.secondary-sidebar ul li {
+  margin: 12px 0;
 }
 
-.close-btn{
-background:none;
-border:none;
-color:white;
-font-size:22px;
-cursor:pointer;
-margin-bottom:20px;
+.secondary-sidebar ul li a {
+  text-decoration: none;
+  color: #333;
+  font-size: 15px;
+  transition: 0.3s;
 }
 
-.submenu{
-max-height:0;
-overflow:hidden;
-display:flex;
-flex-direction:column;
-padding-left:15px;
-transition:0.3s;
+.secondary-sidebar ul li a:hover {
+  color: #ff4500;
+  padding-left: 5px;
 }
 
-.submenu.open{
-max-height:150px;
+/* CLOSE BUTTON */
+.close-btn {
+  background-color: #333;
+  border: none;
+  padding: 6px 12px;
+  cursor: pointer;
+  position: relative;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  
+  transition: 0.3s;
 }
-.menu-title{
-    cursor: pointer;
+.close-btn svg{
+  background-color: beige;
+}
+.close-btn:hover {
+  background: transparent;
 }

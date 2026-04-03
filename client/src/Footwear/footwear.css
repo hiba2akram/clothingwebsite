@@ -1,0 +1,298 @@
+.product-card {
+  border: none;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: 0.3s ease;
+  position: relative;
+  background: #fff;
+}
+
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+/* IMAGE */
+.img-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.product-img {
+  width: 100%;
+  transition: 0.4s ease;
+}
+
+.hover-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.img-container:hover .hover-img {
+  opacity: 1;
+}
+
+.img-container:hover .main-img {
+  opacity: 0;
+}
+
+/* BADGE */
+.sale-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  font-size: 12px;
+  padding: 5px 8px;
+}
+
+/* WISHLIST */
+.wishlist {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* TEXT */
+.product-title {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.rating {
+  color: gold;
+  font-size: 14px;
+}
+
+.price {
+  margin: 8px 0;
+}
+
+.new-price {
+  font-weight: bold;
+}
+
+.old-price {
+  text-decoration: line-through;
+  color: gray;
+  margin-left: 8px;
+}
+
+/* BUTTONS */
+.btn-dark {
+  border-radius: 8px;
+}
+
+.btn-outline-secondary {
+  border-radius: 8px;
+}
+/* ========================= */
+/* PRODUCT DETAIL PAGE */
+/* ========================= */
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f8f9fb;
+}
+
+.product-main-image {
+  width: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+  transition: 0.3s;
+}
+
+.product-main-image:hover {
+  transform: scale(1.05);
+}
+
+/* IMAGE NAVIGATION ARROWS */
+.img-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: black;
+  color: white;
+  border: none;
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: 0.3s;
+}
+
+.img-nav:hover {
+  background: #e63946;
+}
+
+.img-nav.prev {
+  left: 10px;
+}
+
+.img-nav.next {
+  right: 10px;
+}
+
+/* PRODUCT INFO */
+.price {
+  color: #e63946;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.quantity-container {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 50px;
+  overflow: hidden;
+  width: 150px;
+  margin-top: 15px;
+}
+
+.qty-btn {
+  width: 50px;
+  height: 45px;
+  border: none;
+  background: black;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.qty-btn:hover {
+  background: #e63946;
+}
+
+.qty-btn.left {
+  border-radius: 50px 0 0 50px;
+}
+
+.qty-btn.right {
+  border-radius: 0 50px 50px 0;
+}
+
+.qty-value {
+  flex: 1;
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+/* ADD TO CART BUTTON */
+.add-cart-btn {
+  background: black;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 25px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-top: 20px;
+}
+
+.add-cart-btn:hover {
+  background: #e63946;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .product-main-image {
+    height: auto;
+  }
+
+  .quantity-container {
+    width: 120px;
+  }
+
+  .img-nav {
+    width: 35px;
+    height: 35px;
+    font-size: 20px;
+  }
+}
+
+/* ========================= */
+/* CART PAGE */
+/* ========================= */
+
+.cart-item-pro {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  padding: 15px;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+/* IMAGE */
+.cart-img {
+  width: 100px;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.cart-img:hover {
+  transform: scale(1.05);
+}
+
+/* INFO */
+.cart-info {
+  flex: 1;
+  margin-left: 20px;
+}
+
+/* REMOVE */
+.remove-btn {
+  background: transparent;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/* TOTAL */
+.cart-total {
+  text-align: right;
+  margin-top: 20px;
+}
+
+.checkout-btn {
+  background: black;
+  color: white;
+  padding: 10px 25px;
+  border-radius: 25px;
+  border: none;
+}
+
+/* CONTINUE SHOPPING */
+.continue-btn {
+  display: inline-block;
+  margin-top: 20px;
+  text-decoration: none;
+  color: black;
+}
+
+/* ========================= */
+/* RESPONSIVE */
+/* ========================= */
+
+@media (max-width: 768px) {
+  .product-img {
+    height: 220px;
+  }
+
+  .cart-item-pro {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}
