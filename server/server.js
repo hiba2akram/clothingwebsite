@@ -1,29 +1,56 @@
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-
 const db = require("./config/db");
 
 const app = express();
+const port = process.env.PORT || 5000;
 
+// Import routes
+const productRoutes = require("./routes/productRoutes");
+const userRoutes = require("./routes/userRoutes"); // your demo route class
+const cartRoutes = require("./routes/cartRoutes");
+const orderRoutes = require("./routes/orderRoutes");
+const categoryRoutes = require("./routes/categoryRoutes");
+const wishlistRoutes = require("./routes/wishlistRoutes");
+const deliveryRoutes = require("./routes/deliveryRoutes");
+const paymentRoutes = require("./routes/paymentRoutes");
+const reviewRoutes = require("./routes/reviewRoutes");
+
+// Middleware
 app.use(cors());
 app.use(express.json());
 
+// Register routes
+app.use("/products", productRoutes);
+app.use("/users", userRoutes); // modular class example
+app.use("/cart", cartRoutes);
+app.use("/orders", orderRoutes);
+app.use("/categories", categoryRoutes);
+app.use("/wishlist", wishlistRoutes);
+app.use("/delivery", deliveryRoutes);
+app.use("/payment", paymentRoutes);
+app.use("/reviews", reviewRoutes);
+
+// Root route
 app.get("/", (req, res) => {
-    res.send("Backend running");
+  res.send("Backend is working :)");
 });
 
-// Product API
-app.get("/product", (req, res) => {
-    db.query("SELECT * FROM product", (err, result) => {
-        if (err) {
-            res.send(err);
-        } else {
-            res.json(result);
-        }
-    });
+// Test DB connection
+app.get("/test-db", (req, res) => {
+  db.query("SELECT 1", (err) => {
+    if (err) return res.status(500).send("DB error");
+    res.send("DB working");
+  });
 });
 
-// Start Server 🔥
-app.listen(5000, () => {
-    console.log("Server running on port 5000");
+// Handle undefined routes
+app.use((req, res) => {
+  res.status(404).json({ message: "Route not found" });
+});
+
+// Start server
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
 });
