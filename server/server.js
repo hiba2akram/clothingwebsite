@@ -1,29 +1,27 @@
+
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 
-const db = require("./config/db");
-
-const app = express();
+const app = express();  
 
 app.use(cors());
 app.use(express.json());
 
-app.get("/", (req, res) => {
-    res.send("Backend running");
+const adminRoutes = require("./routes/adminRoutes");
+const orderRoutes = require("./routes/orderRoutes");
+const authRoutes  = require("./routes/authRoutes");
+
+
+app.use("/api/admin",  adminRoutes);
+app.use("/api/orders", orderRoutes);
+app.use("/api/auth",   authRoutes);
+
+app.get("/test", (req, res) => {
+  res.json({ message: "Server working" });
 });
 
-// Product API
-app.get("/product", (req, res) => {
-    db.query("SELECT * FROM product", (err, result) => {
-        if (err) {
-            res.send(err);
-        } else {
-            res.json(result);
-        }
-    });
-});
-
-// Start Server 🔥
-app.listen(5000, () => {
-    console.log("Server running on port 5000");
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });

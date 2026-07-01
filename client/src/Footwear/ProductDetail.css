@@ -1,0 +1,383 @@
+/* ── Page shell ── */
+.pd-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* ── Not found ── */
+.pd-not-found {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: #888;
+}
+.pd-not-found button {
+  margin-top: 1rem;
+  background: none;
+  border: 1px solid #ccc;
+  padding: 0.5rem 1.25rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+/* ── Breadcrumb ── */
+.pd-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  color: #999;
+  margin-bottom: 2rem;
+}
+.pd-breadcrumb span {
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.pd-breadcrumb span:hover {
+  color: #333;
+}
+.pd-breadcrumb__sep {
+  color: #ccc;
+  cursor: default;
+}
+.pd-breadcrumb__current {
+  color: #333;
+  cursor: default;
+  font-weight: 500;
+}
+
+/* ── Two-column grid ── */
+.pd-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+@media (max-width: 768px) {
+  .pd-inner {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+/* ─────────────────────────────────────
+   Gallery
+───────────────────────────────────── */
+.pd-gallery {
+  display: flex;
+  gap: 12px;
+}
+
+/* Thumbnail strip */
+.pd-thumbs {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.pd-thumb {
+  width: 64px;
+  height: 64px;
+  border-radius: 8px;
+  border: 1.5px solid #e5e5e5;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 0.2s;
+  flex-shrink: 0;
+}
+.pd-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.pd-thumb--active {
+  border-color: #2d2d2d;
+}
+
+/* Main image */
+.pd-main-img-wrap {
+  position: relative;
+  flex: 1;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #f7f7f5;
+  aspect-ratio: 3 / 4;
+}
+.pd-main-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+.pd-main-img-wrap:hover .pd-main-img {
+  transform: scale(1.03);
+}
+
+/* Arrows */
+.pd-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  transition: background 0.2s;
+}
+.pd-arrow:hover {
+  background: #fff;
+}
+.pd-arrow--prev {
+  left: 10px;
+}
+.pd-arrow--next {
+  right: 10px;
+}
+
+/* ─────────────────────────────────────
+   Info panel
+───────────────────────────────────── */
+.pd-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.pd-info__tag {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #c8a96e;
+  margin: 0 0 0.5rem;
+}
+
+.pd-info__name {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0 0 0.75rem;
+  line-height: 1.25;
+}
+
+/* Rating */
+.pd-rating {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  margin-bottom: 0.75rem;
+}
+.pd-rating__count {
+  font-size: 0.8rem;
+  color: #999;
+  margin-left: 6px;
+}
+
+.pd-info__price {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0 0 0.75rem;
+}
+
+.pd-info__desc {
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Divider */
+.pd-divider {
+  height: 1px;
+  background: #ebebeb;
+  margin: 1.25rem 0;
+}
+
+/* ── Size selector ── */
+.pd-size-section {
+  margin-bottom: 0.25rem;
+}
+.pd-size-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.6rem;
+}
+.pd-section-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #555;
+  margin: 0;
+}
+.pd-size-error {
+  font-size: 0.78rem;
+  color: #c0392b;
+}
+.pd-sizes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.pd-size-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  border: 1.5px solid #e0e0e0;
+  background: #fff;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #333;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s, color 0.2s;
+}
+.pd-size-btn:hover {
+  border-color: #aaa;
+}
+.pd-size-btn--active {
+  border-color: #1a1a1a;
+  background: #1a1a1a;
+  color: #fff;
+}
+
+/* ── Quantity row ── */
+.pd-qty-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.pd-qty-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #555;
+  margin: 0;
+}
+.pd-qty {
+  display: flex;
+  align-items: center;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.pd-qty button {
+  width: 36px;
+  height: 36px;
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+}
+.pd-qty button:hover {
+  background: #f5f5f5;
+}
+.pd-qty span {
+  width: 40px;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #1a1a1a;
+  border-left: 1px solid #e0e0e0;
+  border-right: 1px solid #e0e0e0;
+}
+
+/* ── Actions ── */
+.pd-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 1.25rem;
+}
+
+.pd-btn {
+  cursor: pointer;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.1s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pd-btn:active {
+  transform: scale(0.98);
+}
+
+.pd-btn--cart {
+  flex: 1;
+  height: 50px;
+  background: #1a1a1a;
+  color: #fff;
+  border: none;
+  letter-spacing: 0.04em;
+}
+.pd-btn--cart:hover {
+  background: #333;
+}
+.pd-btn--added {
+  background: #2e7d32 !important;
+}
+
+.pd-btn--wish {
+  width: 50px;
+  height: 50px;
+  background: #fff;
+  border: 1.5px solid #e0e0e0;
+  color: #888;
+}
+.pd-btn--wish:hover {
+  border-color: #bbb;
+  color: #c8a96e;
+}
+.pd-btn--wish-active {
+  color: #c8a96e;
+  border-color: #c8a96e;
+}
+
+/* ── Trust badges ── */
+.pd-trust {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 1.25rem;
+}
+.pd-trust__item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  color: #777;
+}
+
+/* ── Back button ── */
+.pd-back {
+  margin-top: 1.5rem;
+  background: none;
+  border: none;
+  color: #999;
+  font-size: 0.85rem;
+  cursor: pointer;
+  padding: 0;
+  text-align: left;
+  transition: color 0.2s;
+  width: fit-content;
+}
+.pd-back:hover {
+  color: #333;
+}

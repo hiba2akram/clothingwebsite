@@ -1,127 +1,254 @@
-.carousel-img{
-height:820px;
-width:100%;
-object-fit:cover;
-object-position:center;
-}
-.overlay-navbar{
-position:absolute;
-top:20px;
-left:30px;
-right:30px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-z-index:2000;
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Jost:wght@300;400;500&display=swap');
+
+
+.carousel-wrap {
+  position: relative;
+  width: 100%;
+  height: 88vh;
+  min-height: 520px;
+  overflow: hidden;
+  background: #111;
 }
 
-.banner3-fix {
+.carousel-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.carousel-slide__img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  object-position: center top;
-  transform: scale(1.2);  /* zoom properly */
+  object-position: center;
+  display: block;
 }
 
-
-
-
-
-.nav-left{
-display:flex;
-align-items:center;
-gap:15px;
+.carousel-slide__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.65) 0%,
+    rgba(0, 0, 0, 0.3) 50%,
+    rgba(0, 0, 0, 0.05) 100%
+  );
 }
 
-.brand{
-    font-family: 'Cinzel', serif;
-
-    font-size: 60px;
-    font-weight: 1000;
-    letter-spacing: 2px;
-    /* color: rgb(57, 19, 19); */
-    color: rgb(72, 71, 24);
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: 0.3s;
-    margin-left: 50px;
-    margin-top: 10px;
-
+.carousel-slide--fade-in {
+  animation: slideIn 0.6s ease forwards;
 }
 
-.burger{
-font-size:60px;
-    /* color: rgb(69, 43, 43); */
-
-        color: rgb(72, 71, 24);
-
-
-cursor:pointer;
-/* text-shadow:2px 2px 8px rgba(0,0,0,0.7); */
-
-
+.carousel-slide--fade-out {
+  animation: slideOut 0.4s ease forwards;
 }
 
-.icon{
-font-size:24px;
-color:white;
-margin-left:20px;
-cursor:pointer;
-text-shadow:2px 2px 8px rgba(0,0,0,0.7);
-
+@keyframes slideIn {
+  from { opacity: 0; transform: scale(1.03); }
+  to   { opacity: 1; transform: scale(1); }
 }
 
-/* Sidebar */
-
-.sidebar{
-color:black;
-position:fixed;
-top:0;
-left:-260px;
-width:260px;
-height:100%;
-background:white;
-transition:0.4s;
-z-index:4000;
-padding:30px;
+@keyframes slideOut {
+  from { opacity: 1; }
+  to   { opacity: 0; }
 }
 
-.sidebar.show{
-left:0;
+.carousel-caption-box {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  max-width: 520px;
+  padding: 0 32px;
+  z-index: 10;
 }
 
-.sidebar ul{
-list-style:none;
-padding:0;
+.carousel-caption-box--left {
+  left: 8%;
 }
 
-.sidebar ul li{
-margin:20px 0;
+.carousel-caption-box--right {
+  right: 8%;
+  text-align: right;
 }
 
-.sidebar ul li a{
-color:black;
-text-decoration:none;
-font-size:18px;
-text-shadow:2px 2px 8px rgba(0,0,0,0.7);
-
+.carousel-tag {
+  display: inline-block;
+  font-family: 'Jost', sans-serif;
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #d4b896;
+  border: 1px solid #d4b896;
+  padding: 4px 14px;
+  border-radius: 2px;
+  margin-bottom: 18px;
+  animation: captionUp 0.7s ease both;
 }
 
-.close-btn{
-background:none;
-border:none;
-color:black;
-font-size:22px;
-cursor:pointer;
-margin-bottom:20px;
-margin-left: 0px;
-
+.carousel-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(36px, 5vw, 62px);
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.1;
+  margin: 0 0 16px;
+  animation: captionUp 0.7s ease 0.1s both;
 }
 
-.carousel-caption{
-position:absolute;
-bottom:30px;
-left:30px;
-color:Black;
-font-weight: bold;
-font-size: 28px;
-text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+.carousel-sub {
+  font-family: 'Jost', sans-serif;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.7;
+  margin: 0 0 32px;
+  max-width: 400px;
+  animation: captionUp 0.7s ease 0.2s both;
+  font-weight: 300;
+}
+
+.carousel-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: transparent;
+  border: 1px solid #fff;
+  color: #fff;
+  font-family: 'Jost', sans-serif;
+  font-size: 11px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  padding: 14px 28px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  animation: captionUp 0.7s ease 0.3s both;
+}
+
+.carousel-btn:hover {
+  background: #fff;
+  color: #111;
+}
+
+.carousel-btn svg {
+  transition: transform 0.3s ease;
+}
+
+.carousel-btn:hover svg {
+  transform: translateX(4px);
+}
+
+@keyframes captionUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 20;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  backdrop-filter: blur(4px);
+}
+
+.carousel-arrow:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.carousel-arrow--prev { left: 24px; }
+.carousel-arrow--next { right: 24px; }
+
+.carousel-dots {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 20;
+}
+
+.carousel-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.35);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.carousel-dot--active {
+  width: 24px;
+  border-radius: 3px;
+  background: #fff;
+}
+
+.carousel-counter {
+  position: absolute;
+  bottom: 28px;
+  right: 32px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Jost', sans-serif;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+  z-index: 20;
+  letter-spacing: 1px;
+}
+
+.carousel-counter__sep {
+  width: 24px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* ─── Responsive ────────────────────────────────── */
+@media (max-width: 768px) {
+  .carousel-wrap {
+    height: 70vh;
+  }
+
+  .carousel-caption-box {
+    left: 5% !important;
+    right: 5% !important;
+    max-width: 100%;
+    text-align: left;
+  }
+
+  .carousel-slide__overlay {
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  .carousel-arrow {
+    width: 38px;
+    height: 38px;
+  }
+
+  .carousel-arrow--prev { left: 12px; }
+  .carousel-arrow--next { right: 12px; }
+
+  .carousel-counter {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-wrap {
+    height: 60vh;
+    min-height: 400px;
+  }
 }

@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import "./MenDressDetails.css";
+import "../Productdetails/ProductDetail1.css";
 
 import img1 from "../assets/Mens/dress1.webp";
 import img2 from "../assets/Mens/dress2.webp";
@@ -16,269 +16,252 @@ import img4hover from "../assets/Mens/dress4hover.webp";
 import img5hover from "../assets/Mens/dress5hover.webp";
 import img6hover from "../assets/Mens/dress6hover.webp";
 
-const products = [
-  {
-    id: "m1",
-    name: "Shalwar Kameez",
-    price: 2500,
-    images: [img1, img1hover],
-    description: "A stylish printed shirt crafted from high-quality cotton, designed for all-day comfort and a modern casual look.",
-    details: [
-      "Soft premium cotton fabric",
-      "Breathable and lightweight",
-      
-     
-      "Perfect for casual and semi-formal wear"
-    ]
-  },
-  {
-    id: "m2",
-    name: "Shalwar Kameez",
-    price: 2700,
-    images: [img2, img2hover],
-    description: "An elegant lawn shirt tailored for a refined look, ideal for warm weather and formal gatherings.",
-    details: [
-      "Premium lawn fabric",
-      "Highly breathable material",
-      
-      "Soft and smooth texture",
-      "Ideal for formal occasions"
-    ]
-  },
-  {
-    id: "m3",
-    name: "Shalwar Kameez",
-    price: 2300,
-    images: [img3, img3hover],
-    description: "A versatile casual shirt designed for everyday wear, combining comfort with a sleek modern fit.",
-    details: [
-      "High-quality cotton fabric",
-      "Slim fit design",
-      "Machine washable",
-     
-      "Durable stitching",
-      "Perfect for daily use"
-    ]
-  },
-  {
-    id: "m4",
-    name: "Shalwar Kameez",
-    price: 3000,
-    images: [img4, img4hover],
-    description: "A premium formal shirt tailored for a sharp and professional appearance, ideal for office and business wear.",
-    details: [
-      "Wool blend fabric",
-      "Tailored fit",
-      "Wrinkle-resistant",
-      
-      "Light ironing required",
-      "Office & meetings wear"
-    ]
-  },
-  {
-    id: "m5",
-    name: "Shalwar Kameez",
-    price: 3500,
-    images: [img5, img5hover],
-    description: "A unique designer shirt featuring exclusive patterns, crafted for those who want to stand out with style.",
-    details: [
-      "Premium Lawn fabric",
-      "Regular fit",
-      "Soft & comfortable",
-            "Hand wash recommended",
-      "Trendy design"
-    ]
-  },
-  {
-    id: "m6",
-    name: "Shalwar Kameez",
-    price: 4000,
-    images: [img6, img6hover],
-    description: "An ultra-premium shirt made with luxury fabric, offering unmatched comfort, elegance, and durability.",
-    details: [
-      "Luxury-grade fabric",
-      "Custom fit finish",
-      "Ultra-soft texture",
-      "Dry clean recommended",
-      "Premium occasions wear"
-    ]
-  }
+const images = [
+  [img1, img1hover],
+  [img2, img2hover],
+  [img3, img3hover],
+  [img4, img4hover],
+  [img5, img5hover],
+  [img6, img6hover],
 ];
-
 function MenDressDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const product = products.find(p => p.id === id);
+  const [product, setProduct] = useState(null);
+useEffect(() => {
+  fetch("http://localhost:5000/api/admin/public/products")
+    .then(res => res.json())
+    .then(data => {
 
-  const [qty, setQty] = useState(1);
-  const [currentImgIndex, setCurrentImgIndex] = useState(0);
+      const menProducts = data
+        .filter(p => Number(p.CategoryID) === 2)
+        .map((p, index) => ({
+          id: p.ProductID,
+          name: p.ProductName,
+          price: p.Price,
+          description: p.Description || "Men collection",
+          details: ["Premium Fabric", "Comfortable Fit"],
+          images: images[index % images.length],
+           rating: (3.5 + Math.random() * 1.5).toFixed(1), 
+    reviews: Math.floor(10 + Math.random() * 90),    
+        }));
 
-  // ✅ NEW STATES
-  const [selectedSize, setSelectedSize] = useState("M");
-  const [showSizeChart, setShowSizeChart] = useState(false);
+      const foundProduct = menProducts.find(
+        p => Number(p.id) === Number(id)
+      );
 
-  if (!product) return <h2>Product not found</h2>;
+      setProduct(foundProduct);
 
-  const images = product.images || [];
+    })
+    .catch(err => console.log(err));
+}, [id]);  const [qty, setQty] = useState(1);
+  const [activeImg, setActiveImg] = useState(0);
+  const [wishlist, setWishlist] = useState(false);
+  const [added, setAdded] = useState(false);
 
-  const increaseQty = () => setQty(qty + 1);
-  const decreaseQty = () => {
-    if (qty > 1) setQty(qty - 1);
-  };
+  useEffect(() => {
+    setQty(1);
+    setActiveImg(0);
+    setAdded(false);
+  }, [id]);
 
-  // ✅ UPDATED CART (includes size)
+  if (product === null) {
+    return (
+      <div className="pd-not-found">
+        <p>Product not found</p>
+        <button onClick={() => navigate("/men")}>← Back</button>
+      </div>
+    );
+  }
+
   const handleAddToCart = () => {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-    const existingIndex = cart.findIndex(
-      item => item.id === product.id && item.size === selectedSize
-    );
+    const index = cart.findIndex(item => item.id === product.id);
 
-    const productToAdd = {
-      ...product,
-      quantity: qty,
-      size: selectedSize
-    };
-
-    if (existingIndex >= 0) {
-      cart[existingIndex].quantity += qty;
+    if (index >= 0) {
+      cart[index].quantity += qty;
     } else {
-      cart.push(productToAdd);
+      cart.push({
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        quantity: qty
+      });
     }
 
     localStorage.setItem("cart", JSON.stringify(cart));
-    alert("Added to cart!");
-    navigate("/cart");
-  };
+    window.dispatchEvent(new Event("cartUpdated"));
 
-  const prevImage = () => {
-    setCurrentImgIndex(prev =>
-      prev === 0 ? images.length - 1 : prev - 1
-    );
-  };
-
-  const nextImage = () => {
-    setCurrentImgIndex(prev =>
-      prev === images.length - 1 ? 0 : prev + 1
-    );
+    setAdded(true);
+    setTimeout(() => navigate("/cart"), 800);
   };
 
   return (
-    <div className="container mt-5">
-      <div className="row g-4">
+    <div className="pd-page">
 
-        {/* LEFT IMAGE */}
-        <div className="col-md-6 text-center position-relative">
-          {images.length > 1 && (
-            <button className="img-nav prev" onClick={prevImage}>&lt;</button>
-          )}
+      <div className="pd-breadcrumb">
+        <span onClick={() => navigate("/")}>Home</span>
+        <span className="pd-breadcrumb__sep">→</span>
+        <span onClick={() => navigate("/men")}>Men</span>
+        <span className="pd-breadcrumb__sep">→</span>
+        <span className="pd-breadcrumb__current">{product.name}</span>
+      </div>
 
-          <img
-            src={images[currentImgIndex]}
-            alt={product.name}
-            className="product-main-image"
-          />
+       <button className="pd-back" onClick={() => navigate("/men")}>
+            ← Back
+          </button>
 
-          {images.length > 1 && (
-            <button className="img-nav next" onClick={nextImage}>&gt;</button>
-          )}
-        </div>
 
-        {/* RIGHT SIDE */}
-        <div className="col-md-6">
-          <h2>{product.name}</h2>
-          <h4 className="price">Rs. {product.price}</h4>
-          <p>{product.description}</p>
+      <div className="pd-inner">
 
-          {/* DETAILS */}
-          <div className="product-details mb-3">
-            {product.details.map((item, index) => (
-              <p key={index}>• {item}</p>
+        <div className="pd-gallery">
+
+\          <div className="pd-thumbs">
+            {product.images.map((img, i) => (
+              <div
+                key={i}
+                className={`pd-thumb ${activeImg === i ? "pd-thumb--active" : ""}`}
+                onClick={() => setActiveImg(i)}
+              >
+                <img src={img} alt="product" />
+              </div>
             ))}
           </div>
 
-          <div className="mb-3">
-            <h6>Select Size:</h6>
-            <div className="d-flex gap-2 flex-wrap">
-              {["S", "M", "L", "XL", "XXL"].map(size => (
+          <div className="pd-main-img-wrap">
+            <img
+              src={product.images[activeImg]}
+              alt={product.name}
+              className="pd-main-img"
+            />
+
+            {product.images.length > 1 && (
+              <>
                 <button
-                  key={size}
-                  onClick={() => setSelectedSize(size)}
-                  className={`btn btn-sm ${
-                    selectedSize === size
-                      ? "btn-dark"
-                      : "btn-outline-dark"
-                  }`}
+                  className="pd-arrow pd-arrow--prev"
+                  onClick={() =>
+                    setActiveImg(i =>
+                      i === 0 ? product.images.length - 1 : i - 1
+                    )
+                  }
                 >
-                  {size}
+                  ‹
                 </button>
+
+                <button
+                  className="pd-arrow pd-arrow--next"
+                  onClick={() =>
+                    setActiveImg(i =>
+                      i === product.images.length - 1 ? 0 : i + 1
+                    )
+                  }
+                >
+                  ›
+                </button>
+              </>
+            )}
+          </div>
+        </div>
+
+        <div className="pd-info">
+
+          <p className="pd-info__tag">Men Collection</p>
+          <h1 className="pd-info__name">{product.name}</h1>
+          <div className="pd-rating">
+  {[1,2,3,4,5].map(s => {
+    const rating = parseFloat(product.rating);
+    const full = s <= Math.floor(rating);
+    const partial = s === Math.ceil(rating) && !Number.isInteger(rating);
+    return (
+      <svg key={s} width="14" height="14" viewBox="0 0 24 24"
+        fill={full ? "#c8a96e" : "none"}
+        stroke="#c8a96e" strokeWidth="1.5"
+        style={{ opacity: partial ? 0.5 : 1 }}
+      >
+        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+      </svg>
+    );
+  })}
+  <span className="pd-rating__count">{product.rating}/5.0</span>
+</div>
+
+          <p className="pd-info__price">
+            Rs. {product.price.toLocaleString()}
+          </p>
+
+          <p className="pd-info__desc">{product.description}</p>
+
+          <div className="pd-divider" />
+
+          <div className="pd-details">
+            <p className="pd-details__heading">Product Details</p>
+            <ul className="pd-details__list">
+              {product.details.map((d, i) => (
+                <li key={i}>{d}</li>
               ))}
+            </ul>
+          </div>
+
+          <div className="pd-divider" />
+
+          <div className="pd-qty-row">
+            <p className="pd-qty-label">Quantity</p>
+            <div className="pd-qty">
+              <button onClick={() => setQty(q => Math.max(1, q - 1))}>−</button>
+              <span>{qty}</span>
+              <button onClick={() => setQty(q => q + 1)}>+</button>
             </div>
+          </div>
 
+          <div className="pd-actions">
             <button
-              className="btn btn-link mt-2 p-0"
-              onClick={() => setShowSizeChart(true)}
+              className={`pd-btn pd-btn--cart ${added ? "pd-btn--added" : ""}`}
+              onClick={handleAddToCart}
             >
-              View Size Chart
+              {added ? "✓ Added to Cart" : "Add to Cart"}
             </button>
+
+           
+          </div>
+          <div className="pd-trust">
+            <div className="pd-trust__item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+                <rect x="1" y="3" width="15" height="13" rx="2" />
+                <path d="M16 8h4l3 5v3h-7V8z" />
+                <circle cx="5.5" cy="18.5" r="2.5" />
+                <circle cx="18.5" cy="18.5" r="2.5" />
+              </svg>
+              Free shipping over Rs. 5,000
+            </div>
+            <div className="pd-trust__item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+                <polyline points="23 4 23 10 17 10" />
+                <polyline points="1 20 1 14 7 14" />
+                <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15" />
+              </svg>
+              Easy 7-day returns
+            </div>
+            <div className="pd-trust__item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+                <rect x="3" y="11" width="18" height="11" rx="2" />
+                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+              </svg>
+              Secure checkout
+            </div>
           </div>
 
-          {/* QUANTITY */}
-          <div className="quantity-container">
-            <button className="qty-btn" onClick={decreaseQty}>−</button>
-            <span className="qty-value">{qty}</span>
-            <button className="qty-btn" onClick={increaseQty}>+</button>
-          </div>
-
-          {/* ADD TO CART */}
-          <button className="add-cart-btn mt-3" onClick={handleAddToCart}>
-            Add to Cart
-          </button>
-
-          {/* BACK */}
-          <button
-            className="btn btn-secondary mt-2"
-            onClick={() => navigate("/Men")}
-          >
-            ← Back
-          </button>
+         
         </div>
+        
+         
+
+          
+        
       </div>
-
-      {/* ✅ SIZE CHART MODAL */}
-      {showSizeChart && (
-        <div className="size-modal-overlay" onClick={() => setShowSizeChart(false)}>
-          <div className="size-modal" onClick={(e) => e.stopPropagation()}>
-            <h4>Men Shalwar Kameez Size Chart</h4>
-
-            <table className="table table-bordered mt-3">
-              <thead>
-                <tr>
-                  <th>Size</th>
-                  <th>Chest</th>
-                  <th>Length</th>
-                  <th>Shoulder</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr><td>S</td><td>38</td><td>40</td><td>16</td></tr>
-                <tr><td>M</td><td>40</td><td>41</td><td>17</td></tr>
-                <tr><td>L</td><td>42</td><td>42</td><td>18</td></tr>
-                <tr><td>XL</td><td>44</td><td>43</td><td>19</td></tr>
-                <tr><td>XXL</td><td>46</td><td>44</td><td>20</td></tr>
-              </tbody>
-            </table>
-
-            <button
-              className="btn btn-dark mt-2"
-              onClick={() => setShowSizeChart(false)}
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      )}
+      
+      
     </div>
   );
 }

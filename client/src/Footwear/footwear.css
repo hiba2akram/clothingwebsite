@@ -12,7 +12,6 @@
   box-shadow: 0 12px 25px rgba(0,0,0,0.15);
 }
 
-/* IMAGE */
 .img-container {
   position: relative;
   overflow: hidden;
@@ -38,7 +37,6 @@
   opacity: 0;
 }
 
-/* BADGE */
 .sale-badge {
   position: absolute;
   top: 12px;
@@ -47,7 +45,6 @@
   padding: 5px 8px;
 }
 
-/* WISHLIST */
 .wishlist {
   position: absolute;
   top: 12px;
@@ -56,7 +53,6 @@
   cursor: pointer;
 }
 
-/* TEXT */
 .product-title {
   font-size: 16px;
   font-weight: 500;
@@ -81,7 +77,6 @@
   margin-left: 8px;
 }
 
-/* BUTTONS */
 .btn-dark {
   border-radius: 8px;
 }
@@ -89,9 +84,8 @@
 .btn-outline-secondary {
   border-radius: 8px;
 }
-/* ========================= */
-/* PRODUCT DETAIL PAGE */
-/* ========================= */
+
+
 
 body {
   font-family: 'Poppins', sans-serif;
@@ -109,7 +103,6 @@ body {
   transform: scale(1.05);
 }
 
-/* IMAGE NAVIGATION ARROWS */
 .img-nav {
   position: absolute;
   top: 50%;
@@ -138,7 +131,6 @@ body {
   right: 10px;
 }
 
-/* PRODUCT INFO */
 .price {
   color: #e63946;
   font-weight: bold;
@@ -185,7 +177,6 @@ body {
   font-size: 16px;
 }
 
-/* ADD TO CART BUTTON */
 .add-cart-btn {
   background: black;
   color: white;
@@ -202,7 +193,6 @@ body {
   background: #e63946;
 }
 
-/* RESPONSIVE */
 @media (max-width: 768px) {
   .product-main-image {
     height: auto;
@@ -219,9 +209,6 @@ body {
   }
 }
 
-/* ========================= */
-/* CART PAGE */
-/* ========================= */
 
 .cart-item-pro {
   display: flex;
@@ -231,10 +218,10 @@ body {
   padding: 15px;
   border-radius: 12px;
   margin-bottom: 15px;
+  margin-top:200px;
   box-shadow: 0 5px 15px rgba(0,0,0,0.05);
 }
 
-/* IMAGE */
 .cart-img {
   width: 100px;
   border-radius: 10px;
@@ -245,13 +232,11 @@ body {
   transform: scale(1.05);
 }
 
-/* INFO */
 .cart-info {
   flex: 1;
   margin-left: 20px;
 }
 
-/* REMOVE */
 .remove-btn {
   background: transparent;
   border: none;
@@ -259,7 +244,6 @@ body {
   cursor: pointer;
 }
 
-/* TOTAL */
 .cart-total {
   text-align: right;
   margin-top: 20px;
@@ -273,7 +257,6 @@ body {
   border: none;
 }
 
-/* CONTINUE SHOPPING */
 .continue-btn {
   display: inline-block;
   margin-top: 20px;
@@ -281,9 +264,6 @@ body {
   color: black;
 }
 
-/* ========================= */
-/* RESPONSIVE */
-/* ========================= */
 
 @media (max-width: 768px) {
   .product-img {

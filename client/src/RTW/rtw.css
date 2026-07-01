@@ -1,0 +1,329 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Jost:wght@300;400;500&display=swap');
+
+/* ─── Page ──────────────────────────────────────── */
+.fp-page {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 32px 80px;
+  font-family: 'Jost', sans-serif;
+}
+
+/* ─── Page Header ───────────────────────────────── */
+.fp-header {
+  text-align: center;
+  padding: 60px 0 40px;
+  border-bottom: 1px solid #f0ebe4;
+  margin-bottom: 40px;
+}
+
+.fp-header__tag {
+  font-size: 11px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #9e8972;
+  margin-bottom: 12px;
+}
+
+.fp-header__title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 14px;
+  letter-spacing: 1px;
+}
+
+.fp-header__sub {
+  font-size: 14px;
+  color: #888;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+}
+
+/* ─── Category Circles ──────────────────────────── */
+.fp-categories {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin-bottom: 48px;
+  flex-wrap: wrap;
+}
+
+.fp-cat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.fp-cat__img-wrap {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid #e8e0d6;
+  transition: border-color 0.25s, transform 0.25s;
+}
+
+.fp-cat:hover .fp-cat__img-wrap {
+  border-color: #1a1a1a;
+  transform: translateY(-4px);
+}
+
+.fp-cat__img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.fp-cat:hover .fp-cat__img-wrap img {
+  transform: scale(1.08);
+}
+
+.fp-cat__label {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #3a3a3a;
+  font-weight: 500;
+}
+
+/* ─── Toolbar ───────────────────────────────────── */
+.fp-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #f0ebe4;
+}
+
+.fp-toolbar__count {
+  font-size: 13px;
+  color: #888;
+  letter-spacing: 0.5px;
+}
+
+.fp-sort {
+  font-family: 'Jost', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  border: 1px solid #d4c9bb;
+  padding: 8px 14px;
+  background: #fff;
+  color: #1a1a1a;
+  outline: none;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: border-color 0.2s;
+}
+
+.fp-sort:focus {
+  border-color: #1a1a1a;
+}
+
+/* ─── Product Grid ──────────────────────────────── */
+.fp-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+/* ─── Product Card ──────────────────────────────── */
+.fp-card {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Image area */
+.fp-card__img-wrap {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 4px;
+  aspect-ratio: 3 / 4;
+  text-decoration: none;
+}
+
+.fp-card__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.4s ease, transform 0.6s ease;
+}
+
+.fp-card__img--main  { opacity: 1; z-index: 1; }
+.fp-card__img--hover { opacity: 0; z-index: 2; }
+
+.fp-card__img-wrap:hover .fp-card__img--main  { opacity: 0; transform: scale(1.04); }
+.fp-card__img-wrap:hover .fp-card__img--hover { opacity: 1; }
+
+/* Sale badge */
+.fp-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 10;
+  background: #1a1a1a;
+  color: #fff;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 2px;
+}
+
+/* Wishlist button */
+.fp-wishlist {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 10;
+  background: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #888;
+  transition: color 0.2s, transform 0.2s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.fp-wishlist:hover,
+.fp-wishlist--active {
+  color: #c0392b;
+  transform: scale(1.1);
+}
+
+/* Quick Add button (hover reveal) */
+.fp-quick-add {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  background: rgba(26, 26, 26, 0.88);
+  color: #fff;
+  border: none;
+  font-family: 'Jost', sans-serif;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 14px;
+  cursor: pointer;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+
+.fp-card__img-wrap:hover .fp-quick-add {
+  transform: translateY(0);
+}
+
+/* ─── Card Info ─────────────────────────────────── */
+.fp-card__info {
+  padding: 16px 4px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.fp-card__name {
+  font-family: 'Jost', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #1a1a1a;
+  letter-spacing: 0.5px;
+  margin: 0;
+}
+
+.fp-card__rating {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+}
+
+.fp-card__prices {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.fp-card__price {
+  font-size: 14px;
+  font-weight: 500;
+  color: #1a1a1a;
+}
+
+.fp-card__old-price {
+  font-size: 13px;
+  color: #aaa;
+  text-decoration: line-through;
+}
+
+.fp-card__btn {
+  margin-top: 8px;
+  width: 100%;
+  padding: 11px;
+  background: #fff;
+  border: 1px solid #1a1a1a;
+  color: #1a1a1a;
+  font-family: 'Jost', sans-serif;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all 0.25s ease;
+}
+
+.fp-card__btn:hover {
+  background: #1a1a1a;
+  color: #fff;
+}
+
+/* ─── Responsive ────────────────────────────────── */
+@media (max-width: 1024px) {
+  .fp-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .fp-page {
+    padding: 0 16px 60px;
+  }
+
+  .fp-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .fp-categories {
+    gap: 20px;
+  }
+
+  .fp-cat__img-wrap {
+    width: 60px;
+    height: 60px;
+  }
+
+  .fp-toolbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}
+
+.fp-card__rating {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+}

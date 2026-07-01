@@ -1,52 +1,253 @@
-.brandvideo {
-  display: flex;           /* video + content side by side */
-  align-items: center;     /* vertically center content */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400;1,600&family=Jost:wght@300;400;500&display=swap');
+
+.bv-section {
+  position: relative;
+  height: 100vh;
+  min-height: 600px;
   width: 100%;
-  height: 500px;           /* total height */
-  gap: 20px;               /* space between video and content */
-  padding: 20px;
-  box-sizing: border-box;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
 
-.video-wrapper {
-  width: 60%;              /* video takes 60% of container */
+.bv-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
   height: 100%;
+  object-fit: cover;
+  z-index: 0;
 }
 
-.video {
-  width: 100%;
-  height: 120%;
-  object-fit: cover;       /* keeps aspect ratio, no stretching */
-  border-radius: 10px;
-  margin-top: 40px;
+.bv-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    105deg,
+    rgba(0, 0, 0, 0.78) 0%,
+    rgba(0, 0, 0, 0.45) 55%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
 }
 
-.right-content {
-  width: 35%;              /* right content takes remaining space */
-  color: black;
+.bv-content {
+  position: relative;
+  z-index: 2;
+  max-width: 580px;
+  padding: 0 0 0 8%;
+  color: #fff;
+  animation: bvFadeUp 1s ease both;
 }
 
-.right-content h2 {
-  font-size: 2rem;
-  margin-bottom: 10px;
+@keyframes bvFadeUp {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-.right-content p {
-  font-size: 1.2rem;
-  margin-bottom: 20px;
+/* Tag */
+.bv-tag {
+  display: inline-block;
+  font-family: 'Jost', sans-serif;
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #d4b896;
+  border: 1px solid rgba(212, 184, 150, 0.5);
+  padding: 5px 14px;
+  border-radius: 2px;
+  margin-bottom: 24px;
 }
 
-.right-content button {
-  padding: 10px 20px;
-  font-size: 1rem;
+.bv-heading {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(38px, 5vw, 68px);
+  font-weight: 700;
+  line-height: 1.1;
+  margin: 0 0 20px;
+  color: #fff;
+  letter-spacing: 1px;
+}
+
+.bv-heading em {
+  font-style: italic;
+  color: #d4b896;
+  font-weight: 400;
+}
+
+
+.bv-text {
+  font-family: 'Jost', sans-serif;
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.75);
+  margin: 0 0 36px;
+  max-width: 440px;
+}
+
+.bv-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 48px;
+}
+
+.bv-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Jost', sans-serif;
+  font-size: 11px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  padding: 14px 28px;
+  border-radius: 2px;
   cursor: pointer;
-  background-color: black;
-  border: none;
-  border-radius: 5px;
-  color: white;
   transition: all 0.3s ease;
 }
-.right-content button:hover {
-  background-color: pink;
-  color: black;
+
+.bv-btn--primary {
+  background: #d4b896;
+  color: #111;
+  border: 1px solid #d4b896;
+}
+
+.bv-btn--primary:hover {
+  background: #c4a882;
+  border-color: #c4a882;
+}
+
+.bv-btn--primary svg {
+  transition: transform 0.3s;
+}
+
+.bv-btn--primary:hover svg {
+  transform: translateX(4px);
+}
+
+.bv-btn--outline {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.bv-btn--outline:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #fff;
+}
+
+.bv-stats {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.bv-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.bv-stat__num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1;
+}
+
+.bv-stat__label {
+  font-family: 'Jost', sans-serif;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.bv-stat__divider {
+  width: 1px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+
+.bv-mute {
+  position: absolute;
+  bottom: 32px;
+  right: 32px;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #fff;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  backdrop-filter: blur(4px);
+}
+
+.bv-mute:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.bv-scroll {
+  position: absolute;
+  bottom: 36px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.4);
+  font-family: 'Jost', sans-serif;
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.bv-scroll__line {
+  width: 1px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.3);
+  animation: scrollPulse 2s ease infinite;
+}
+
+@keyframes scrollPulse {
+  0%   { transform: scaleY(0); transform-origin: top; opacity: 0; }
+  50%  { transform: scaleY(1); transform-origin: top; opacity: 1; }
+  100% { transform: scaleY(1); transform-origin: bottom; opacity: 0; }
+}
+
+/* ─── Responsive ────────────────────────────────── */
+@media (max-width: 768px) {
+  .bv-content {
+    padding: 0 24px;
+    max-width: 100%;
+  }
+
+  .bv-stats {
+    gap: 16px;
+  }
+
+  .bv-scroll {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .bv-actions {
+    flex-direction: column;
+  }
+
+  .bv-btn {
+    justify-content: center;
+  }
 }
